@@ -1,0 +1,18 @@
+"I am not the author for this smtp_tls file so I bear no responsibility"
+
+How to use:
+
+1>Check out this smtp_tls.rb file to the location of the file where you have the code which sends mails using your gmail account.
+2>Add require 'smtp_tls' to your can it should start working.
+3>Below is a sample code for sending mails using ruby Net::SMTP
+
+msgstr = <<END_OF_MESSAGE
+From: VPSDOWNALERT <vpsdownalert@gmail.com>
+Subject: Down Alert
+Your VPS IS DOWN
+END_OF_MESSAGE
+smtp = Net::SMTP.start('smtp.gmail.com', 25, 'gmail.com', 'vpsdownalert@gmail.com', '***', :login)
+smtp.send_message msgstr, 'vpsdownalert@gmail.com', 'vamsikilari@kilari.co.in'
+smtp.finish
+
+The other option would be to use a block so that we need not close the connection manually using finish.
